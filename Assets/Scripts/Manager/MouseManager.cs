@@ -6,22 +6,18 @@ using System;
 
 //[System.Serializable]
 //public class EventVector3 : UnityEvent<Vector3> { };
-public class MouseManager : MonoBehaviour
+public class MouseManager : Singleton<MouseManager>
 {
-    public static MouseManager instance;
 
     public Texture2D point, doorway, attack, target, arrow;
     RaycastHit hitInfo;
     public event Action<Vector3> OnMouseClicked;
     public event Action<GameObject> OnEnemyClicked;
 
-    private void Awake()
+    protected override void Awake()
     {
-        if (instance != null)
-        {
-            Destroy(gameObject);
-        }
-        instance = this;
+        base.Awake();
+        DontDestroyOnLoad(this);
     }
     void Update()
     {
@@ -44,7 +40,11 @@ public class MouseManager : MonoBehaviour
                 case "Enemy":
                     Cursor.SetCursor(attack,new Vector2(16,16),CursorMode.Auto);
                     break;
+                case "Portal":
+                    Cursor.SetCursor(doorway,new Vector2(16,16),CursorMode.Auto);
+                    break;
                 default:
+                    Cursor.SetCursor(arrow,new Vector2(16,16),CursorMode.Auto);
                     break;
             }
         }
@@ -61,6 +61,14 @@ public class MouseManager : MonoBehaviour
             if (hitInfo.collider.gameObject.CompareTag("Enemy"))
             {
                 OnEnemyClicked?.Invoke(hitInfo.collider.gameObject);
+            }
+            if (hitInfo.collider.gameObject.CompareTag("Attackable"))
+            {
+                OnEnemyClicked?.Invoke(hitInfo.collider.gameObject);
+            }
+            if (hitInfo.collider.gameObject.CompareTag("Portal"))
+            {
+                OnMouseClicked?.Invoke(hitInfo.point);
             }
         }
     }

@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 191537577043637810}
   - component: {fileID: 191537577043637821}
   - component: {fileID: 191537577043637820}
+  - component: {fileID: 5896007915935413549}
+  - component: {fileID: 5439837097299678802}
   m_Layer: 7
   m_Name: Slime
   m_TagString: Enemy
@@ -34,6 +36,7 @@ Transform:
   m_Children:
   - {fileID: 191278937046422891}
   - {fileID: 196280718804786763}
+  - {fileID: 424900877657630393}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -83,6 +86,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sightRadius: 8
+  isGuard: 0
+  lookAtTime: 0
+  patrolRange: 0
 --- !u!195 &191537577043637820
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -105,6 +111,38 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &5896007915935413549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 192429813129555377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11d7b9431e4cd9b4eb73679d3da95222, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthUIPrefab: {fileID: 1991000276417448831, guid: e016d221750ea984ebc2a53bde2f68db, type: 3}
+  barPoint: {fileID: 424900877657630393}
+  alwaysVisible: 0
+  visibleTime: 0
+--- !u!114 &5439837097299678802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 192429813129555377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53ee20ecfa7af0c489dfdc08f5b24e76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  templateData: {fileID: 11400000, guid: 0ba36be38e90af64cbe0dcf5e288a2d9, type: 2}
+  characterData: {fileID: 0}
+  attackData: {fileID: 11400000, guid: 913c8ec8e16b3ec45b7ffed39f601f7e, type: 2}
+  isCritical: 0
 --- !u!1 &192499700941817255
 GameObject:
   m_ObjectHideFlags: 0
@@ -518,4 +556,35 @@ Transform:
   - {fileID: 196144028318834589}
   m_Father: {fileID: 191278937046422891}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8131043608160389893
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 424900877657630393}
+  m_Layer: 7
+  m_Name: HealthBar Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &424900877657630393
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8131043608160389893}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.6, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 196223919407448989}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
