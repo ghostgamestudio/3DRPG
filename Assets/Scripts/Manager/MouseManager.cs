@@ -11,8 +11,8 @@ public class MouseManager : Singleton<MouseManager>
 
     public Texture2D point, doorway, attack, target, arrow;
     RaycastHit hitInfo;
-    public event Action<Vector3> OnMouseClicked;
-    public event Action<GameObject> OnEnemyClicked;
+    private Collider hitBox;
+    public event UnityAction OnMouseClicked;
 
     protected override void Awake()
     {
@@ -31,12 +31,12 @@ public class MouseManager : Singleton<MouseManager>
 
         if (Physics.Raycast(ray, out hitInfo))
         {
-            //«–ªª Û±ÍÃ˘Õº
+            //ÂàáÊç¢Èº†Ê†áË¥¥Âõæ
             switch (hitInfo.collider.gameObject.tag)
             {
-                case "Ground":
-                    Cursor.SetCursor(target,new Vector2(16,16),CursorMode.Auto);
-                    break;
+                //case "Ground":
+                //    Cursor.SetCursor(target, new Vector2(16, 16), CursorMode.Auto);
+                //    break;
                 case "Enemy":
                     Cursor.SetCursor(attack,new Vector2(16,16),CursorMode.Auto);
                     break;
@@ -52,24 +52,25 @@ public class MouseManager : Singleton<MouseManager>
 
     void MouseControl()
     {
-        if (Input.GetMouseButtonDown(0) && hitInfo.collider != null)
+        if (Input.GetMouseButtonDown(0))
         {
-            if (hitInfo.collider.gameObject.CompareTag("Ground"))
-            {
-                OnMouseClicked?.Invoke(hitInfo.point);
-            }
-            if (hitInfo.collider.gameObject.CompareTag("Enemy"))
-            {
-                OnEnemyClicked?.Invoke(hitInfo.collider.gameObject);
-            }
-            if (hitInfo.collider.gameObject.CompareTag("Attackable"))
-            {
-                OnEnemyClicked?.Invoke(hitInfo.collider.gameObject);
-            }
-            if (hitInfo.collider.gameObject.CompareTag("Portal"))
-            {
-                OnMouseClicked?.Invoke(hitInfo.point);
-            }
+            //if (hitInfo.collider.gameObject.CompareTag("Ground"))
+            //{
+            //    OnMouseClicked?.Invoke(hitInfo.point);
+            //}
+            //if (hitBox.gameObject.CompareTag("Enemy"))
+            //{
+            //    OnEnemyClicked?.Invoke(hitInfo.collider.gameObject);
+            //}
+            //if (hitInfo.collider.gameObject.CompareTag("Attackable"))
+            //{
+            //    OnEnemyClicked?.Invoke(hitInfo.collider.gameObject);
+            //}
+            //if (hitInfo.collider.gameObject.CompareTag("Portal"))
+            //{
+            //    OnMouseClicked?.Invoke(hitInfo.point);
+            //}
+            OnMouseClicked?.Invoke();
         }
     }
 }
